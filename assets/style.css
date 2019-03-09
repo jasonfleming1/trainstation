@@ -1,0 +1,53 @@
+/*my style */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+   position: relative;
+   min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+    font-size: 18px;
+    line-height: 36px;
+    color: #999999;
+    background: #fafafa;
+    margin-bottom: 80px;
+  }
+
+  #submit:hover {
+    background: #ffff00;
+    color: #000000;
+    font-weight: bold;
+    border: none;
+    box-shadow: #343a40;
+    padding: 10px;
+ }
+
+ #button:focus {
+    font-weight: bold;
+    border: none;
+    box-shadow: #343a40;
+    padding: 10px;
+ }
+
+input[type=text] {
+   width: 96%;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 14px;
+   padding: 12px 20px;
+   margin: 3px 0;
+   box-sizing: border-box;
+   margin-bottom: 20px;
+}
+
+input[type=text]:focus, textarea:focus {
+   border: 3px solid #ffff00;
+   outline: none;
+ }
