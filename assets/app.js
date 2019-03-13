@@ -16,35 +16,40 @@ $(document).ready(function () {
 
     //variables for our database
     var database = firebase.database();
-    var trainName;
-    var destination;
-    var firstTrain;
-    var frequency;
+    var trainName = "";
+    var destination = "";
+    var firstTrain = "";
+    var frequency = "";
 
     //click event
     $("#submit").on("click", function () {
         event.preventDefault();
+        trainName = $("#train").val().trim();
+        destination = $("#destination").val().trim();
+        firstTrain = $("#firstTrain").val().trim();
+        frequency = $("#frequency").val().trim();
+
         database.ref().push({
-            trainName = $("#train").val().trim(),
-            destination = $("#destination").val().trim(),
-            firstTrain = $("#firsttrain").val().trim(),
-            frequency = $("#frequency").val().trim(),
-        });
+            trainName: trainName,
+            destination: destination,
+            firstTrain: firstTrain,
+            frequency: frequency,
+        })
     });
 
-    database.on("child-added", function (childSnapshot) {
+    database.ref().on("child_added", function (childSnapshot) {
 
         console.log(childSnapshot);
 
-        var dbName = childSnapshot.val().trainName;
-        var dbDestination = childSnapshot.val().destination;
-        var dbFirstTrain = childSnapshot.val().firstTrain;
-        var dbFrequency = childSnapshot.val().frequency;
+        var trainName = childSnapshot.val().trainName;
+        var destination = childSnapshot.val().destination;
+        var firstTrain = childSnapshot.val().firstTrain;
+        var frequency = childSnapshot.val().frequency;
 
         //append as rows to the table
 
-        $("#schedule > tbody").append("<tr><td>" + dbName + "</td><td>" + dbDestination + "</td><td>" +
-            dbFrequency + "</td><td>" + moment(dbFirstTrain).format("hh:mm A"));
+        $("#schedule > tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" +
+            firstTrain + "</td><td>" + moment(frequency).format("hh:mm A"));
     });
 
 });
